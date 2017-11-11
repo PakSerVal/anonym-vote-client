@@ -1,0 +1,27 @@
+<div class="register-area" *ngIf="!isRegistred">
+  <label for="username">Username</label>
+  <input type="text" class="form-control" id="username" [(ngModel)]="username">
+  <label for="password">Password</label>
+  <input type="text" class="form-control" id="password" [(ngModel)]="password">
+  <label for="LIK">LIK</label>
+  <input type="text" class="form-control" id="LIK" [(ngModel)]="LIK">
+  <button class="btn btn-success" (click)="register()">Register</button>
+  <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+</div>
+
+<div class="confirm-register-area container" *ngIf="isRegistred">
+  <h2>Registration success!</h2>
+  <div></div>
+  <div class="row">
+    <div class="col-xs-4">Your private key</div>
+    <div class="col-xs-4">{{ signaturePrvKey.d.toString() }}</div>
+    <div class="col-xs-4">{{ signatureModulus }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">Your public key</div>
+    <div class="col-xs-4">{{ signauturePubExponent }}</div>
+    <div class="col-xs-4">{{ signatureModulus }}</div>
+  </div>
+  <h4>Note down your private key for voting!</h4>
+  <a [routerLink]="['/login']" class="btn btn-link">LogIn</a>
+</div>
