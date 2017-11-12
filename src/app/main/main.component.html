@@ -1,6 +1,11 @@
-<app-voter *ngIf="user && user.role == 'voter'" [user]="user"></app-voter>
-<app-admin *ngIf="user && user.role == 'admin'"></app-admin>
+<div *ngIf="user">
+  username: {{user.username}}<br>
+  LIK: {{user.LIK}}
+  <button class="btn" (click)="logout()">Logout</button>
+</div>
 <div *ngIf="!user">
   Please login!
   <a [routerLink]="['/login']" class="btn btn-link">Login</a>
 </div>
+<app-voter *ngIf="user && user.role == 'voter'" [user]="user"></app-voter>
+<app-admin *ngIf="user && user.role == 'admin'"></app-admin>

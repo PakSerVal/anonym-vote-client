@@ -1,4 +1,15 @@
-<div *ngFor="let election of electionList">
-  <div>{{ election.name }}</div>
+<div class="container" *ngIf="!castingDone">
+  <div class="row">
+    <div class="col-xs-4">
+      <div *ngFor="let election of electionList">
+        <button class="btn btn-link" (click)="setElection(election)">{{ election.name }}</button>
+      </div>
+    </div>
+    <div class="col-xs-8">
+      <app-election [election]="selectedElection" (setCandidate)="onSetCandidate($event)"></app-election>
+    </div>
+  </div>
 </div>
+<app-bulletin [bulletin]="bulletin" (castVote)="onCastVote()"></app-bulletin>
+
 

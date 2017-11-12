@@ -1,0 +1,9 @@
+<div *ngIf="election">
+  <h1>{{election.name}}</h1>
+  <p>Выберите кандидата</p>
+  <div *ngFor="let candidate of election.candidates">
+    <input type="radio"  name="candidate" (click)="selectCandidate(candidate)"> {{candidate.fio}}
+  </div>
+  <button class="btn btn-success" (click)="saveCandidate()" [disabled]="!selectedCandidate">save</button>
+</div>
+

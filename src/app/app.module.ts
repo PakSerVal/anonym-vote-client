@@ -16,6 +16,9 @@ import {UserService} from './services/user.service';
 import { VoterComponent } from './main/voter/voter.component';
 import { AdminComponent } from './main/admin/admin.component';
 import { ElectionService } from './services/election.service';
+import { ElectionComponent } from './main/voter/election/election.component';
+import { BulletinComponent } from './main/voter/bulletin/bulletin.component';
+import { BulletinService } from './services/bulletin.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { ElectionService } from './services/election.service';
     MainComponent,
     RegisterComponent,
     VoterComponent,
-    AdminComponent
+    AdminComponent,
+    ElectionComponent,
+    BulletinComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,7 @@ import { ElectionService } from './services/election.service';
     FormsModule,
     HttpModule
   ],
-  providers: [AuthService, AuthGuard, UserService, ElectionService],
+  providers: [AuthService, AuthGuard, UserService, ElectionService, BulletinService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

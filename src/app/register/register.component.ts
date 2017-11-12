@@ -16,8 +16,8 @@ export class RegisterComponent implements OnInit {
   password: string;
   LIK: string;
   signatureModulus: string;
-  signauturePubExponent: string;
-  signaturePrvKey: any;
+  signaturePubExponent: string;
+  signaturePrvExponent: string;
 
   constructor(private userService: UserService) { }
 
@@ -26,13 +26,16 @@ export class RegisterComponent implements OnInit {
   register() {
     if(this.username && this.password && this.LIK) {
       let rsakeypair = KEYUTIL.generateKeypair("RSA", 1024);
-      this.signaturePrvKey = rsakeypair.prvKeyObj;
-      this.signauturePubExponent = rsakeypair.pubKeyObj.e.toString();
+      this.signaturePrvExponent = rsakeypair.prvKeyObj.d.toString();
+      this.signaturePubExponent = rsakeypair.pubKeyObj.e.toString();
       this.signatureModulus = rsakeypair.pubKeyObj.n.toString();
       this.userService.createUser(this.username, this.password, this.LIK, rsakeypair.pubKeyObj.n.toString(16), rsakeypair.pubKeyObj.e.toString(16)).subscribe(
         response => {
-          if (response.status == 200)
-          this.isRegistred = true;
+          if (response.status == 200) {
+            localStorage.setItem("signatureModulus", this.signatureModulus);
+            localStorage.setItem("signaturePrvExponent", this.signaturePrvExponent);
+            this.isRegistred = true;
+          }
         }
       )
     }

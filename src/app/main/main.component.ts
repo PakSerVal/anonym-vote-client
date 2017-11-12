@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../models/User';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -10,8 +11,7 @@ export class MainComponent implements OnInit {
 
   user: User;
 
-
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.setUser();
@@ -22,5 +22,9 @@ export class MainComponent implements OnInit {
       let user = JSON.parse(localStorage.getItem("currentUser"));
       this.user = new User(user.id, user.username, user.LIK, user.role);
     }
+  }
+
+  logout() {
+    this.authService.logOut();
   }
 }
