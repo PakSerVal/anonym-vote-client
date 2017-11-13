@@ -3,3 +3,12 @@
   max-width: 250px;
   margin: 20% auto auto auto;
 }
+.notice {
+  color: red;
+}
+.signature-key-date {
+  max-width: 800px;
+  overflow: auto;
+  height: 100px;
+  word-wrap: break-word;
+}

@@ -12,6 +12,7 @@ declare  var KJUR: any;
 export class BulletinComponent implements OnInit {
 
   @Input() bulletin;
+  @Input() bulletinCanBeSend: boolean;
   @Output() castVote = new EventEmitter();
 
   bulletinToSign = false;
@@ -20,12 +21,9 @@ export class BulletinComponent implements OnInit {
 
   constructor(private bulletinService: BulletinService) { }
 
-  ngOnInit() {
-    console.log(this.bulletin);
-  }
+  ngOnInit() {}
 
   sendBulletin() {
-    this.castVote.emit();
     this.setSignatureData();
     this.bulletinToSign = true;
   }

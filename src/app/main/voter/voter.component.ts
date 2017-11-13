@@ -20,13 +20,15 @@ export class VoterComponent implements OnInit {
   selectedElection: Election;
   bulletin = [];
   castingDone = false;
+  bulletinCanBeSend = false;
 
   constructor(private electionService: ElectionService, private router: Router) { }
 
   ngOnInit() {
     this.electionService.getElectionsByUserId(this.user.id).subscribe(
       elections => this.electionList = elections
-    )
+    );
+    this.castingDone = this.user.isCastingDone;
   }
 
   setElection(election: Election) {
@@ -47,7 +49,9 @@ export class VoterComponent implements OnInit {
     } else {
       this.bulletin.push(candidateData);
     }
-    console.log(this.bulletin);
+    if (this.bulletin.length == this.electionList.length) {
+      this.bulletinCanBeSend = true;
+    }
   }
 
   onCastVote() {

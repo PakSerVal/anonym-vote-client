@@ -1,15 +1,19 @@
-<div class="container" *ngIf="!castingDone">
-  <div class="row">
-    <div class="col-xs-4">
-      <div *ngFor="let election of electionList">
+<div class="container" *ngIf="!castingDone" style="margin-top: 100px;">
+  <h2 style="text-align: center">Available elections</h2>
+  <div class="row election-area">
+    <div class="col-xs-4 elections-list">
+      <div *ngFor="let election of electionList" class="election-name">
         <button class="btn btn-link" (click)="setElection(election)">{{ election.name }}</button>
       </div>
     </div>
-    <div class="col-xs-8">
+    <div class="col-xs-8 election-component">
       <app-election [election]="selectedElection" (setCandidate)="onSetCandidate($event)"></app-election>
     </div>
   </div>
+  <app-bulletin [bulletin]="bulletin" [bulletinCanBeSend]="bulletinCanBeSend" (castVote)="onCastVote()"></app-bulletin>
 </div>
-<app-bulletin [bulletin]="bulletin" (castVote)="onCastVote()"></app-bulletin>
+<div *ngIf="castingDone">
+  <h2 style="text-align: center">You have already voted!</h2>
+</div>
 
 

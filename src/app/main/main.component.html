@@ -1,7 +1,7 @@
-<div *ngIf="user">
-  username: {{user.username}}<br>
-  LIK: {{user.LIK}}
-  <button class="btn" (click)="logout()">Logout</button>
+<div *ngIf="user" class="user-info">
+  <div style="float: left;">username: {{user.username}}</div>
+  <div style="float: right;"> LIK: {{user.LIK}}</div><br>
+  <button style="color: white" class="btn-link" (click)="logout()">logout</button>
 </div>
 <div *ngIf="!user">
   Please login!

@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
   setUser() {
     if (localStorage.getItem("currentUser") != null) {
       let user = JSON.parse(localStorage.getItem("currentUser"));
-      this.user = new User(user.id, user.username, user.LIK, user.role);
+      this.user = new User(user.id, user.username, user.LIK, user.role, user.isCastingDone);
     }
   }
 

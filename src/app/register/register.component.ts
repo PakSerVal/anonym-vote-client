@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   signatureModulus: string;
   signaturePubExponent: string;
   signaturePrvExponent: string;
+  noticeMessage: string;
 
   constructor(private userService: UserService) { }
 
@@ -35,6 +36,8 @@ export class RegisterComponent implements OnInit {
             localStorage.setItem("signatureModulus", this.signatureModulus);
             localStorage.setItem("signaturePrvExponent", this.signaturePrvExponent);
             this.isRegistred = true;
+          } else  {
+            this.noticeMessage = "Registration failed! Invalid LIK or you already registred";
           }
         }
       )

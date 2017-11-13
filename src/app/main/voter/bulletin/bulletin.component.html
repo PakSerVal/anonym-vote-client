@@ -1,5 +1,5 @@
-<div *ngIf="bulletin.length != 0 && !bulletinToSign">
-  <h1>Bulletin</h1>
+<div *ngIf="bulletin.length != 0 && !bulletinToSign" class="bulletin">
+  <h1 style="text-align: center">Bulletin</h1>
   <table class="table">
     <tr>
       <th>Election name</th>
@@ -10,10 +10,10 @@
       <td>{{ bulletinData.candidate.fio }}</td>
     </tr>
   </table>
-  <button (click)="sendBulletin()" class="btn">Send bulletin</button>
+  <div style="text-align: right"><button (click)="sendBulletin()" class="btn btn-danger" [disabled]="!bulletinCanBeSend">Send bulletin</button></div>
 </div>
-<div *ngIf="bulletin.length != 0 && bulletinToSign">
-  <h1>Bulletin</h1>
+<div *ngIf="bulletin.length != 0 && bulletinToSign" class="bulletin">
+  <h1 style="text-align: center">Bulletin</h1>
   <table class="table">
     <tr>
       <th>Election name</th>
@@ -26,9 +26,9 @@
   </table>
   <div class="signature">
     <h4>Please enter your private key</h4>
-    <input type="text" id="signaturePrvExponent" [(ngModel)]="signaturePrvExponent">
-    <input type="text" id="signatureModulus" [(ngModel)]="signatureModulus">
+    <label for="signaturePrvExponent">d  </label><input type="text" id="signaturePrvExponent" [(ngModel)]="signaturePrvExponent"><br>
+    <label for="signatureModulus">n  </label><input type="text" id="signatureModulus" [(ngModel)]="signatureModulus">
   </div>
-  <button (click)="sendSignedBulletin()" class="btn">Send bulletin to sever</button>
+  <div style="text-align: right"><button (click)="sendSignedBulletin()" class="btn btn-danger" [disabled]="!bulletinCanBeSend">Send bulletin to sever</button></div>
 </div>
 

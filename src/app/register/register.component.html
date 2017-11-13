@@ -4,24 +4,29 @@
   <label for="password">Password</label>
   <input type="text" class="form-control" id="password" [(ngModel)]="password">
   <label for="LIK">LIK</label>
-  <input type="text" class="form-control" id="LIK" [(ngModel)]="LIK">
+  <input type="text" class="form-control" id="LIK" [(ngModel)]="LIK"><br>
   <button class="btn btn-success" (click)="register()">Register</button>
   <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+  <div class="notice">
+    {{noticeMessage}}
+  </div>
 </div>
-
 <div class="confirm-register-area container" *ngIf="isRegistred">
-  <h2>Registration success!</h2>
-  <div></div>
+  <h2 style="text-align: center; color: lawngreen">Registration success!</h2>
   <div class="row">
-    <div class="col-xs-4">Your private key</div>
-    <div class="col-xs-4">{{signaturePrvExponent}}</div>
-    <div class="col-xs-4">{{signatureModulus}}</div>
+    <h4>Your private key</h4>
+    <div>d</div>
+    <div class="signature-key-date">{{signaturePrvExponent}}</div>
+    <div>n</div>
+    <div class="signature-key-date">{{signatureModulus}}</div>
   </div>
   <div class="row">
-    <div class="col-xs-4">Your public key</div>
-    <div class="col-xs-4">{{signaturePubExponent}}</div>
-    <div class="col-xs-4">{{ signatureModulus }}</div>
+    <h4>Your public key</h4>
+    <div>e</div>
+    <div class="signature-key-date">{{signaturePubExponent}}</div>
+    <div>n</div>
+    <div class="signature-key-date">{{ signatureModulus }}</div>
   </div>
-  <h4>Note down your private key for voting!</h4>
+  <h4>Save your private key for voting!</h4>
   <a [routerLink]="['/login']" class="btn btn-link">LogIn</a>
 </div>

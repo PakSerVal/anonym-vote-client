@@ -19,7 +19,8 @@ export class UserService {
         function (response: Response) {
           return response;
         }
-      );
+      )
+      .catch(this.handleError);
   }
 
   public loginUser(username: string, password: string): Observable<User> {
@@ -30,10 +31,25 @@ export class UserService {
       .map(
         function (response: Response) {
           let res = response.json();
-          let user = new User(res.id, res.username, res.lik, res.role);
+          let user = new User(res.id, res.username, res.lik, res.role, res.isCastingDone);
           return user;
         }
       );
+  }
+
+  private handleError(error: any, cought: Observable<any>): any {
+    let message = "";
+
+    if (error instanceof Response) {
+      let errorData = error.json().error || JSON.stringify(error.json());
+      message = `${error.status} - ${error.statusText || ''} ${errorData}`
+    } else {
+      message = error.message ? error.message : error.toString();
+    }
+
+    console.error(message);
+
+    return message;
   }
 }
 

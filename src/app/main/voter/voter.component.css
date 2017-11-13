@@ -1,0 +1,24 @@
+.elections-list {
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  text-align: center;
+  height: 100%;
+}
+.election-name {
+  padding: 15px 0px;
+}
+
+.election-name button {
+  font-size: 20px;
+}
+
+.election-component {
+  text-align: center;
+}
+
+.election-area {
+  background-color: white;;
+  border: 1px solid black;
+  border-radius: 10px;
+  min-height: 600px;
+}

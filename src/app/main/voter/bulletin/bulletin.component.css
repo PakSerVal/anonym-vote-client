@@ -1,0 +1,15 @@
+.bulletin {
+  margin-bottom: 100px;
+  background-color: darkblue;
+  color: white;
+  border-radius: 10px;
+}
+
+.signature {
+  text-align: center;
+}
+
+.signature input {
+  color: black;
+  width: 500px;
+}
