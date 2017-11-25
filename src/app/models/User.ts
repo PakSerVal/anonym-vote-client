@@ -1,6 +1,7 @@
 export class User {
   public id: number;
   public username: string;
+  public password: string;
   public LIK: string;
   public role: string;
   public isCastingDone: boolean

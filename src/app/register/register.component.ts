@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {UserService} from '../services/user.service';
 declare var KEYUTIL : any;
-declare  var KJUR: any;
 
 @Component({
   selector: 'app-register',

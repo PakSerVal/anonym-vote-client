@@ -13,13 +13,14 @@ export  class AuthService {
     this.userService.loginUser(username, password).subscribe(
       user => {
         localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('userPassword', password);
         this.router.navigate(['/main']);
       }
     )
   }
 
   logOut() {
-    localStorage.removeItem('currentUser');
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 }

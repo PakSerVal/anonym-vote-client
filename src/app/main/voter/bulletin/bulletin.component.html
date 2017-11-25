@@ -29,6 +29,6 @@
     <label for="signaturePrvExponent">d  </label><input type="text" id="signaturePrvExponent" [(ngModel)]="signaturePrvExponent"><br>
     <label for="signatureModulus">n  </label><input type="text" id="signatureModulus" [(ngModel)]="signatureModulus">
   </div>
-  <div style="text-align: right"><button (click)="sendSignedBulletin()" class="btn btn-danger" [disabled]="!bulletinCanBeSend">Send bulletin to sever</button></div>
+  <div style="text-align: right"><button (click)="encryptAndSendBulletin()" class="btn btn-danger" [disabled]="!bulletinCanBeSend">Send bulletin to sever</button></div>
 </div>
 

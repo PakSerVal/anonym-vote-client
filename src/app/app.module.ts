@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import {HttpModule} from '@angular/http';
-
-
+import {MultiSelectModule} from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +18,10 @@ import { ElectionService } from './services/election.service';
 import { ElectionComponent } from './main/voter/election/election.component';
 import { BulletinComponent } from './main/voter/bulletin/bulletin.component';
 import { BulletinService } from './services/bulletin.service';
+import {ElgamalService} from './services/elgamal.service';
+import {CandidateService} from './services/candidate.service';
+import { AddElectionComponent } from './main/admin/add-election/add-election.component';
+import { EditElectionComponent } from './main/admin/edit-election/edit-election.component';
 
 @NgModule({
   declarations: [
@@ -29,15 +32,18 @@ import { BulletinService } from './services/bulletin.service';
     VoterComponent,
     AdminComponent,
     ElectionComponent,
-    BulletinComponent
+    BulletinComponent,
+    AddElectionComponent,
+    EditElectionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MultiSelectModule,
     HttpModule
   ],
-  providers: [AuthService, AuthGuard, UserService, ElectionService, BulletinService],
+  providers: [AuthService, AuthGuard, UserService, ElectionService, BulletinService, ElgamalService, CandidateService, UserService, ElectionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,19 @@
+.header {
+  font-size: 20px;
+}
+
+.header-option {
+  text-align: center;
+  color: white;
+  background-color: #c34343;
+  border: 1px solid white;
+}
+
+.header-option:hover {
+  cursor: pointer;
+  color: lightskyblue;
+}
+
+.selected-option {
+  background-color: blue;
+}

@@ -24,15 +24,33 @@ export class UserService {
   }
 
   public loginUser(username: string, password: string): Observable<User> {
-    const user = { "username": username, "password": password};
-    const body = JSON.stringify(user);
-    const headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+    let user = { "username": username, "password": password};
+    let body = JSON.stringify(user);
+    let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
     return this.http.post('http://localhost:50233/api/spg/login-user/', body, { headers: headers })
       .map(
         function (response: Response) {
           let res = response.json();
           let user = new User(res.id, res.username, res.lik, res.role, res.isCastingDone);
           return user;
+        }
+      );
+  }
+
+  public getAllUsers(user: User): Observable<User[]> {
+    user.password = localStorage.getItem("userPassword");
+    let body = JSON.stringify(user);
+    let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+    return this.http.post('http://localhost:50233/api/spg/get-all-users', body, { headers: headers })
+      .map(
+        function (response: Response) {
+          let users: User[] = [];
+          let res = response.json();
+          for (let i = 0; i < res.length; i++) {
+            let user = new User(res.id, res.username, res.lik, res.role, res.isCastingDone);
+            users.push(user);
+          }
+          return users;
         }
       );
   }

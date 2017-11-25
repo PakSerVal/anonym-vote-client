@@ -1,5 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BulletinService} from '../../../services/bulletin.service';
+import {ElgamalPubKey} from '../../../models/ElgamalPubKey';
+import {ElgamalService} from '../../../services/elgamal.service';
+
 declare var parseBigInt : any;
 declare  var RSAKey: any;
 declare  var KJUR: any;
@@ -18,10 +21,17 @@ export class BulletinComponent implements OnInit {
   bulletinToSign = false;
   signaturePrvExponent: string;
   signatureModulus: string;
+  mixNetPubKey: ElgamalPubKey;
 
-  constructor(private bulletinService: BulletinService) { }
+  constructor(private bulletinService: BulletinService, private elgamalService: ElgamalService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.elgamalService.getMixNetKey().subscribe(
+      mixNetKey => {
+        this.mixNetPubKey = mixNetKey;
+      }
+    );
+  }
 
   sendBulletin() {
     this.setSignatureData();
@@ -33,18 +43,9 @@ export class BulletinComponent implements OnInit {
     this.signatureModulus = localStorage.getItem("signatureModulus");
   }
 
-  sendSignedBulletin() {
+  encryptAndSendBulletin() {
     let bulletinString = this.createBulletinString();
-    let signature = this.signBulletinString(bulletinString);
-    this.bulletinService.sendBulletin(bulletinString, signature).subscribe(
-      response => {
-        if (response.status == 200) {
-          this.castVote.emit();
-          alert("Your vote accept!");
-          this.bulletinToSign = false;
-        }
-      }
-    )
+    this.encryptAndSendBulletinString(bulletinString);
   }
 
   createBulletinString(): string {
@@ -66,5 +67,24 @@ export class BulletinComponent implements OnInit {
     sig.init(key);
     sig.updateString(bulletinString);
     return sig.sign();
+  }
+
+  encryptAndSendBulletinString(bulletingString: string) {
+    this.elgamalService.encryptString(this.mixNetPubKey, bulletingString).then(
+      encrypted => { return JSON.stringify(encrypted); }
+    ).then(
+      encrypted => {
+        let signature = this.signBulletinString(encrypted);
+        this.bulletinService.sendBulletin(encrypted, signature).subscribe(
+          response => {
+            if (response.status == 200) {
+              this.castVote.emit();
+              alert("Your vote accept!");
+              this.bulletinToSign = false;
+            }
+          }
+        )
+      }
+    );
   }
 }
