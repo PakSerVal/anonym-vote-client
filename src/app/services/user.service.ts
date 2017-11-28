@@ -4,13 +4,14 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {User} from '../models/User';
+import {Election} from '../models/Election';
 
 @Injectable()
 export class UserService {
 
   constructor(private http: Http) { }
 
-  public createUser(username: string, password: string, LIK: string, signatureModulus: string, signauturePubExponent: string): Observable<Response> {
+  public registerUser(username: string, password: string, LIK: string, signatureModulus: string, signauturePubExponent: string): Observable<Response> {
     let usersDetails = { "username": username, "password": password, "LIK": LIK, signatureModulus: signatureModulus, signaturePubExponent: signauturePubExponent};
     let body = JSON.stringify(usersDetails);
     let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
@@ -31,8 +32,35 @@ export class UserService {
       .map(
         function (response: Response) {
           let res = response.json();
-          let user = new User(res.id, res.username, res.lik, res.role, res.isCastingDone);
+          let user = new User(res.lik, res.role);
+          user.username = res.username;
+          user.id = res.id;
+          user.isCastingDone = res.isCastingDone;
           return user;
+        }
+      );
+  }
+
+  public addUser(user: User, addUser: User, selectedElections: Election[]) {
+    user.password = localStorage.getItem("userPassword");
+    let body = JSON.stringify({user: user, elections: selectedElections, addUser: addUser});
+    let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+    return this.http.post('http://localhost:50233/api/spg/add-user/', body, { headers: headers })
+      .map(
+        function (response: Response) {
+          return response;
+        }
+      );
+  }
+
+  public deleteUser(user: User, userId: number) {
+    user.password = localStorage.getItem("userPassword");
+    let body = JSON.stringify({user: user, userId: userId});
+    let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+    return this.http.post('http://localhost:50233/api/spg/delete-user/', body, { headers: headers })
+      .map(
+        function (response: Response) {
+          return response;
         }
       );
   }
@@ -47,7 +75,18 @@ export class UserService {
           let users: User[] = [];
           let res = response.json();
           for (let i = 0; i < res.length; i++) {
-            let user = new User(res.id, res.username, res.lik, res.role, res.isCastingDone);
+            let user = new User(res[i].lik, res[i].role);
+            user.id = res[i].id;
+            user.username = res[i].username;
+            user.isCastingDone = res[i].isCastingDone;
+            user.isRegistred = res[i].isRegistred;
+            let elections: Election[] = [];
+            for (let e = 0; e < res[i].elections.length; e++) {
+              let election = new Election(res[i].elections[e].name);
+              election.id = res[i].elections[e].id;
+              elections.push(election);
+            }
+            user.elections = elections;
             users.push(user);
           }
           return users;

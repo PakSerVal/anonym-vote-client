@@ -5,8 +5,7 @@ export class Election {
   public name: string;
   public candidates: Candidate[];
 
-  constructor(id: number, name: string) {
-    this.id = id;
+  constructor(name: string) {
     this.name = name;
   }
 }

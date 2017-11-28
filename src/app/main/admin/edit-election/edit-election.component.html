@@ -1,3 +1,45 @@
-<p>
-  edit-election works!
-</p>
+<p-dialog header="Edit candidate" [(visible)]="editCandidateFlag" *ngIf="editableCandidate">
+  <span class="ui-float-label">
+    <input id="float-input-1" type="text" size="30" pInputText [(ngModel)]="editableCandidate.fio">
+    <label for="float-input-1">FIO</label>
+    <button class="btn btn-success" (click)="saveCandidate()">SAVE</button>
+  </span>
+</p-dialog>
+<div class="container" *ngIf="election">
+  <h1 style="text-align: center">Edit election</h1>
+  <div class="row">
+    <div class="col-xs-offset-4 col-xs-4" style="text-align: center">
+      <h4 style="text-align: center">Election name</h4><br>
+      <input type="text" pInputText id="election-name" [(ngModel)]="election.name">
+    </div>
+  </div><br>
+  <div class="row">
+    <h4 style="text-align: center">Candidates</h4><br>
+    <div class="col-xs-offset-4 col-xs-4">
+      <table class="table">
+        <tr>
+          <th>id</th>
+          <th>fio</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let candidate of election.candidates; let i = index;">
+          <td>{{candidate.id}}</td>
+          <td>{{candidate.fio}}</td>
+          <td><button class="btn-danger" (click)="editCandidate(candidate)">edit</button> <button class="btn-danger" (click)="deleteCandidate(i)">delete</button></td>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <div class="col-xs-offset-4 col-xs-4" style="text-align: center">
+      <span class="ui-float-label">
+        <input id="float-input-2" type="text" size="30" pInputText [(ngModel)]="addCandidateFio">
+        <label for="float-input-2">FIO</label>
+        <button class="btn btn-warning" (click)="addCandidate()">Add candidate</button>
+      </span>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-xs-offset-4 col-xs-4" style="text-align: center"><button class="btn btn-success" (click)="saveElection()">SAVE</button></div>
+  </div>
+</div>

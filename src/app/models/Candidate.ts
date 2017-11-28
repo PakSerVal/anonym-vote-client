@@ -3,9 +3,7 @@ export class Candidate {
   public electionId: number;
   public fio: string;
 
-  constructor(id: number, electionId: number, fio: string) {
-    this.id = id;
-    this.electionId = electionId;
+  constructor(fio: string) {
     this.fio = fio;
   }
 }

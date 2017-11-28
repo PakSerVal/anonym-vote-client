@@ -1,0 +1,24 @@
+<div class="container">
+  <h1 style="text-align: center">Add user</h1>
+  <div class="row">
+    <div class="col-xs-offset-4 col-xs-4" style="text-align: center">
+      <label for="user-lik">User LIK</label><br>
+      <input type="text" pInputText id="user-lik" [(ngModel)]="userLIK">
+    </div>
+    <br>
+    <div class="col-xs-offset-4 col-xs-4" style="text-align: center">
+      <label>User Role</label><br>
+      <p-radioButton name="groupname" value="voter" label="voter" [(ngModel)]="userRole"></p-radioButton>
+      <br>
+      <p-radioButton name="groupname" value="admin" label="admin" [(ngModel)]="userRole"></p-radioButton>
+    </div>
+  </div><br>
+  <div class="row" style="text-align: center">
+    <label>Elections</label><br>
+    <br>
+    <p-multiSelect [options]="elections" [(ngModel)]="selectedElections"></p-multiSelect>
+  </div><br>
+  <div class="row">
+    <div class="col-xs-offset-4 col-xs-4" style="text-align: center"><button class="btn btn-success" [disabled]="!userLIK || selectedElections.length == 0" (click)="saveUser()">SAVE</button></div>
+  </div>
+</div>

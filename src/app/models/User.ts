@@ -1,16 +1,17 @@
+import {Election} from './Election';
+
 export class User {
   public id: number;
   public username: string;
   public password: string;
   public LIK: string;
   public role: string;
-  public isCastingDone: boolean
+  public isCastingDone: boolean;
+  public isRegistred: boolean;
+  public elections: Election[];
 
-  constructor(id: number, username: string, LIK: string, role: string, isCastingDone = false) {
-    this.id = id;
-    this.username = username;
+  constructor(LIK: string, role: string) {
     this.LIK = LIK;
     this.role = role;
-    this.isCastingDone = isCastingDone;
   }
 }

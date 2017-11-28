@@ -23,7 +23,9 @@ export class CandidateService {
     let res = response.json();
     let candidates: Candidate[] = [];
     for (let i = 0; i < res.length; i++) {
-      let candidate = new Candidate(res[i].id, res[i].electionId, res[i].fio);
+      let candidate = new Candidate(res[i].fio);
+      candidate.id = res[i].id;
+      candidate.electionId = res[i].electionId;
       candidates.push(candidate);
     }
     return candidates;

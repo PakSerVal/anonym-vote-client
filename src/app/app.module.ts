@@ -4,6 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {MultiSelectModule} from 'primeng/primeng';
+import {InputTextModule} from 'primeng/primeng';
+import {DialogModule} from 'primeng/primeng';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {RadioButtonModule} from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -22,6 +26,7 @@ import {ElgamalService} from './services/elgamal.service';
 import {CandidateService} from './services/candidate.service';
 import { AddElectionComponent } from './main/admin/add-election/add-election.component';
 import { EditElectionComponent } from './main/admin/edit-election/edit-election.component';
+import { AddUserComponent } from './main/admin/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -34,13 +39,18 @@ import { EditElectionComponent } from './main/admin/edit-election/edit-election.
     ElectionComponent,
     BulletinComponent,
     AddElectionComponent,
-    EditElectionComponent
+    EditElectionComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     MultiSelectModule,
+    InputTextModule,
+    DialogModule,
+    BrowserAnimationsModule,
+    RadioButtonModule,
     HttpModule
   ],
   providers: [AuthService, AuthGuard, UserService, ElectionService, BulletinService, ElgamalService, CandidateService, UserService, ElectionService],

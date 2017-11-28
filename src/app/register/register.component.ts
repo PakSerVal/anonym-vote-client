@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       this.signaturePrvExponent = rsakeypair.prvKeyObj.d.toString();
       this.signaturePubExponent = rsakeypair.pubKeyObj.e.toString();
       this.signatureModulus = rsakeypair.pubKeyObj.n.toString();
-      this.userService.createUser(this.username, this.password, this.LIK, rsakeypair.pubKeyObj.n.toString(16), rsakeypair.pubKeyObj.e.toString(16)).subscribe(
+      this.userService.registerUser(this.username, this.password, this.LIK, rsakeypair.pubKeyObj.n.toString(16), rsakeypair.pubKeyObj.e.toString(16)).subscribe(
         response => {
           if (response.status == 200) {
             localStorage.setItem("signatureModulus", this.signatureModulus);

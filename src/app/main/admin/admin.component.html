@@ -1,12 +1,9 @@
 <div class="container header">
   <div class="row">
-    <div class="col-sm-4 header-option" [ngClass]="selectedPage == 'elections'? 'selected-option' : ''" (click)="selectedPage = 'elections'">
+    <div class="col-xs-6 header-option" [ngClass]="selectedPage == 'elections'? 'selected-option' : ''" (click)="selectedPage = 'elections'">
       <p>Elections</p>
     </div>
-    <div class="col-sm-4 header-option" [ngClass]="selectedPage == 'candidates'? 'selected-option' : ''" (click)="selectedPage = 'candidates'">
-      <p>Candidates</p>
-    </div>
-    <div class="col-sm-4 header-option" [ngClass]="selectedPage == 'users'? 'selected-option' : ''" (click)="selectedPage = 'users'">
+    <div class="col-xs-6 header-option" [ngClass]="selectedPage == 'users'? 'selected-option' : ''" (click)="selectedPage = 'users'">
       <p>Users</p>
     </div>
   </div>
@@ -23,9 +20,33 @@
         <td>{{election.id}}</td>
         <td>{{election.name}}</td>
         <td>{{election.candidates.length}}</td>
-        <td><button class="btn-danger">edit</button> <button class="btn-danger">delete</button></td>
+        <td><button class="btn-danger" [routerLink]="['/edit-election/', election.id]">edit</button> <button class="btn-danger" (click)="deleteElection(election.id)">delete</button></td>
       </tr>
     </table>
     <button class="btn-success" [routerLink]="['/add-election']">Add election</button>
+  </div>
+  <div class="row" *ngIf="selectedPage == 'users'">
+    <table class="table">
+      <tr>
+        <th>User Id</th>
+        <th>User name</th>
+        <th>User role</th>
+        <th>User LIK</th>
+        <th>casted</th>
+        <th>registred</th>
+        <th>User elections</th>
+      </tr>
+      <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.role}}</td>
+        <td>{{user.LIK}}</td>
+        <td>{{user.isCastingDone}}</td>
+        <td>{{user.isRegistred}}</td>
+        <td>{{getElectionsString(user.elections)}}</td>
+        <td><button class="btn-danger" (click)="deleteUser(user.id)">delete</button></td>
+      </tr>
+    </table>
+    <button class="btn-success" [routerLink]="['/add-user']">Add user</button>
   </div>
 </div>
