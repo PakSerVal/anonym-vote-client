@@ -2,20 +2,22 @@
   <h1 style="text-align: center">Add user</h1>
   <div class="row">
     <div class="col-xs-offset-4 col-xs-4" style="text-align: center">
-      <label for="user-lik">User LIK</label><br>
+      <h4>User LIK</h4><br>
       <input type="text" pInputText id="user-lik" [(ngModel)]="userLIK">
     </div>
-    <br>
+  </div>
+  <hr>
+  <div class="row">
     <div class="col-xs-offset-4 col-xs-4" style="text-align: center">
-      <label>User Role</label><br>
+      <h4>User Role</h4><br>
       <p-radioButton name="groupname" value="voter" label="voter" [(ngModel)]="userRole"></p-radioButton>
       <br>
       <p-radioButton name="groupname" value="admin" label="admin" [(ngModel)]="userRole"></p-radioButton>
     </div>
-  </div><br>
+  </div>
+  <hr>
   <div class="row" style="text-align: center">
-    <label>Elections</label><br>
-    <br>
+    <h4>Elections</h4><br>
     <p-multiSelect [options]="elections" [(ngModel)]="selectedElections"></p-multiSelect>
   </div><br>
   <div class="row">

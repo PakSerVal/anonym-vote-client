@@ -26,19 +26,21 @@
         <tr *ngFor="let candidate of election.candidates; let i = index;">
           <td>{{candidate.id}}</td>
           <td>{{candidate.fio}}</td>
-          <td><button class="btn-danger" (click)="editCandidate(candidate)">edit</button> <button class="btn-danger" (click)="deleteCandidate(i)">delete</button></td>
+          <td><button class="btn btn-danger" (click)="editCandidate(candidate)">edit</button> <button class="btn btn-danger" (click)="deleteCandidate(i)">delete</button></td>
         </tr>
       </table>
     </div>
-    <br>
+  </div><br>
+  <div class="row">
     <div class="col-xs-offset-4 col-xs-4" style="text-align: center">
       <span class="ui-float-label">
-        <input id="float-input-2" type="text" size="30" pInputText [(ngModel)]="addCandidateFio">
         <label for="float-input-2">FIO</label>
-        <button class="btn btn-warning" (click)="addCandidate()">Add candidate</button>
-      </span>
+        <input id="float-input-2" type="text" size="30" pInputText [(ngModel)]="addCandidateFio">
+      </span><br>
+      <button class="btn btn-warning" (click)="addCandidate()">Add candidate</button>
     </div>
-  </div><br>
+  </div>
+  <hr>
   <div class="row">
     <div class="col-xs-offset-4 col-xs-4" style="text-align: center"><button class="btn btn-success" (click)="saveElection()">SAVE</button></div>
   </div>

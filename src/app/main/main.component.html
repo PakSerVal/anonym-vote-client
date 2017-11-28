@@ -1,8 +1,17 @@
-<div *ngIf="user" class="user-info">
-  <div style="float: left;">username: {{user.username}}</div>
-  <div style="float: right;"> LIK: {{user.LIK}}</div><br>
-  <button style="color: white" class="btn-link" (click)="logout()">logout</button>
+<div *ngIf="user" class="container-fluid user-info">
+  <div class="row">
+    <div class="col-xs-1 username-area">
+      {{user.username}}
+      <button style="color: white" class="btn-danger" (click)="logout()">Logout</button>
+    </div>
+    <div class="col-xs-offset-3 col-xs-4 img-area">
+      <img src="assets/img/voter.png">
+      <div>{{user.role}}</div>
+    </div>
+    <div class="col-xs-offset-3 col-xs-1 lik-area"> LIK: {{user.LIK}}</div><br>
+  </div>
 </div>
+
 <div *ngIf="!user">
   Please login!
   <a [routerLink]="['/login']" class="btn btn-link">Login</a>

@@ -10,22 +10,25 @@
 </div>
 <div class="container main">
   <div class="row" *ngIf="selectedPage == 'elections'">
+    <h1 style="text-align: center">Elections</h1>
     <table class="table">
       <tr>
         <th>Election Id</th>
         <th>Election Name</th>
         <th>Count of candidates</th>
+        <th></th>
       </tr>
       <tr *ngFor="let election of elections">
         <td>{{election.id}}</td>
         <td>{{election.name}}</td>
         <td>{{election.candidates.length}}</td>
-        <td><button class="btn-danger" [routerLink]="['/edit-election/', election.id]">edit</button> <button class="btn-danger" (click)="deleteElection(election.id)">delete</button></td>
+        <td><button class="btn btn-danger" [routerLink]="['/edit-election/', election.id]">edit</button> <button class="btn btn-danger" (click)="deleteElection(election.id)">delete</button></td>
       </tr>
     </table>
-    <button class="btn-success" [routerLink]="['/add-election']">Add election</button>
+    <button class="btn btn-success" [routerLink]="['/add-election']">Add election</button>
   </div>
   <div class="row" *ngIf="selectedPage == 'users'">
+    <h1 style="text-align: center">Users</h1>
     <table class="table">
       <tr>
         <th>User Id</th>
@@ -35,6 +38,7 @@
         <th>casted</th>
         <th>registred</th>
         <th>User elections</th>
+        <th></th>
       </tr>
       <tr *ngFor="let user of users">
         <td>{{user.id}}</td>
@@ -44,9 +48,9 @@
         <td>{{user.isCastingDone}}</td>
         <td>{{user.isRegistred}}</td>
         <td>{{getElectionsString(user.elections)}}</td>
-        <td><button class="btn-danger" (click)="deleteUser(user.id)">delete</button></td>
+        <td><button class="btn btn-danger" (click)="deleteUser(user.id)">delete</button></td>
       </tr>
     </table>
-    <button class="btn-success" [routerLink]="['/add-user']">Add user</button>
+    <button class="btn btn-success" [routerLink]="['/add-user']">Add user</button>
   </div>
 </div>

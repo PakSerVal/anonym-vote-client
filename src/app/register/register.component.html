@@ -2,10 +2,10 @@
   <label for="username">Username</label>
   <input type="text" class="form-control" id="username" [(ngModel)]="username">
   <label for="password">Password</label>
-  <input type="text" class="form-control" id="password" [(ngModel)]="password">
+  <input type="password" class="form-control" id="password" [(ngModel)]="password">
   <label for="LIK">LIK</label>
   <input type="text" class="form-control" id="LIK" [(ngModel)]="LIK"><br>
-  <button class="btn btn-success" (click)="register()">Register</button>
+  <button class="btn btn-success" (click)="register()">Sign Up</button>
   <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
   <div class="notice">
     {{noticeMessage}}
@@ -13,20 +13,24 @@
 </div>
 <div class="confirm-register-area container" *ngIf="isRegistred">
   <h2 style="text-align: center; color: lawngreen">Registration success!</h2>
+  <h4 style="text-align: center">Your private key</h4>
   <div class="row">
-    <h4>Your private key</h4>
-    <div>d</div>
-    <div class="signature-key-date">{{signaturePrvExponent}}</div>
-    <div>n</div>
-    <div class="signature-key-date">{{signatureModulus}}</div>
+    <div class="col-xs-4 key-letter">D</div>
+    <div class="col-xs-8 signature-key-date">{{signaturePrvExponent}}</div>
   </div>
   <div class="row">
-    <h4>Your public key</h4>
-    <div>e</div>
-    <div class="signature-key-date">{{signaturePubExponent}}</div>
-    <div>n</div>
-    <div class="signature-key-date">{{ signatureModulus }}</div>
+    <div class="col-xs-4 key-letter">N</div>
+    <div class="col-xs-8 signature-key-date">{{signatureModulus}}</div>
   </div>
-  <h4>Save your private key for voting!</h4>
-  <a [routerLink]="['/login']" class="btn btn-link">LogIn</a>
+  <h4 style="text-align: center">Your public key</h4>
+  <div class="row">
+    <div class="col-xs-4 key-letter">E</div>
+    <div class="col-xs-8 signature-key-date">{{signaturePubExponent}}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 key-letter">N</div>
+    <div class="col-xs-8 signature-key-date">{{ signatureModulus }}</div>
+  </div>
+  <h4 style="text-align: center; font-size: 40px; text-decoration: underline;">Save your private key for voting!</h4>
+  <button [routerLink]="['/login']" class="btn btn-link">LogIn</button>
 </div>

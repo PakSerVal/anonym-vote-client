@@ -7,8 +7,16 @@
   color: red;
 }
 .signature-key-date {
-  max-width: 800px;
   overflow: auto;
-  height: 100px;
   word-wrap: break-word;
+  margin-bottom: 20px;
+  background-color: aquamarine;
+  height: 100%;
+}
+
+.key-letter {
+  font-size: 50px;
+  text-align: center;
+  height: 100px;
+  background-color: tomato;
 }

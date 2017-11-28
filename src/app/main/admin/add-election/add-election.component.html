@@ -13,15 +13,19 @@
       <span class="ui-float-label">
         <input id="float-input" type="text" size="30" pInputText [(ngModel)]="candidateFio">
         <label for="float-input">FIO</label>
-        <button class="btn btn-warning" (click)="addCandidate()">Add candidate</button>
       </span>
+      <br>
+      <button class="btn btn-warning" (click)="addCandidate()">Add candidate</button>
     </div>
+  </div><br>
+  <div class="row">
     <div class="col-xs-offset-4 col-xs-4">
       <div *ngFor="let candidate of candidates">
         {{candidate.fio}}
       </div>
     </div>
-  </div><br>
+  </div>
+  <hr>
   <div class="row">
     <div class="col-xs-offset-4 col-xs-4" style="text-align: center"><button class="btn btn-success" [disabled]="!electionName" (click)="saveElection()">SAVE</button></div>
   </div>
