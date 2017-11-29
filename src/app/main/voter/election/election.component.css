@@ -7,3 +7,9 @@
 .candidates input {
   margin: 20px 0;
 }
+
+.election-area {
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #f7e7c4;
+}

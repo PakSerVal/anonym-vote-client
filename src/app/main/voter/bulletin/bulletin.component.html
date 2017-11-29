@@ -1,4 +1,4 @@
-<div *ngIf="bulletin.length != 0 && !bulletinToSign" class="bulletin">
+<div *ngIf="!bulletinToSign" class="bulletin">
   <h1 style="text-align: center">Bulletin</h1>
   <table class="table">
     <tr>
@@ -10,9 +10,10 @@
       <td>{{ bulletinData.candidate.fio }}</td>
     </tr>
   </table>
+  <div style="color: red; text-align: right" *ngIf="!bulletinCanBeSend">Choose candidates for all elections to send bulletin</div>
   <div style="text-align: right"><button (click)="sendBulletin()" class="btn btn-danger" [disabled]="!bulletinCanBeSend">Send bulletin</button></div>
 </div>
-<div *ngIf="bulletin.length != 0 && bulletinToSign" class="bulletin">
+<div *ngIf="bulletinToSign" class="bulletin">
   <h1 style="text-align: center">Bulletin</h1>
   <table class="table">
     <tr>

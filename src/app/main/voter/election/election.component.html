@@ -1,11 +1,13 @@
 <div *ngIf="election">
-  <h1>{{election.name}}</h1>
-  <p>Choose your candidate</p>
-  <div class="candidates">
-    <div *ngFor="let candidate of election.candidates">
-      <input type="radio"  name="candidate" (click)="selectCandidate(candidate)"> {{candidate.fio}}
+  <h2 style="text-align: center">Make your choice!</h2>
+  <div class="row election-area" >
+    <h3 style="text-align: center; color: darkblue; font-size: 20px">{{election.name}}</h3>
+    <div class="candidates">
+      <div *ngFor="let candidate of election.candidates" style="margin-left: 30%">
+        <p-radioButton name="candidate" label="{{candidate.fio}}" (click)="selectCandidate(candidate)"></p-radioButton>
+      </div>
     </div>
+    <div style="text-align: right"><button class="btn btn-success" (click)="saveCandidate()" [disabled]="!selectedCandidate">save your choice</button></div>
   </div>
-  <div style="text-align: right"><button class="btn btn-success" (click)="saveCandidate()" [disabled]="!selectedCandidate">save your choice</button></div>
 </div>
 

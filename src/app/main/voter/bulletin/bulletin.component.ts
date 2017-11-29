@@ -78,7 +78,7 @@ export class BulletinComponent implements OnInit {
         this.bulletinService.sendBulletin(encrypted, signature).subscribe(
           response => {
             if (response.status == 200) {
-              this.castVote.emit();
+              this.castVote.emit(encrypted);
               alert("Your vote accept!");
               this.bulletinToSign = false;
             }

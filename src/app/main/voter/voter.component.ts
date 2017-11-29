@@ -6,6 +6,8 @@ import {Router} from '@angular/router';
 import {ElectionComponent} from './election/election.component';
 import {Candidate} from '../../models/Candidate';
 
+declare  var KJUR: any;
+
 @Component({
   selector: 'app-voter',
   templateUrl: './voter.component.html',
@@ -21,6 +23,7 @@ export class VoterComponent implements OnInit {
   bulletin = [];
   castingDone = false;
   bulletinCanBeSend = false;
+  voteDigest = "";
 
   constructor(private electionService: ElectionService, private router: Router) { }
 
@@ -54,7 +57,12 @@ export class VoterComponent implements OnInit {
     }
   }
 
-  onCastVote() {
+  onCastVote(encryptedMessage: any) {
     this.castingDone = true;
+    this.user.isCastingDone = true;
+    localStorage.setItem("currentUser", JSON.stringify(this.user));
+    let md = new KJUR.crypto.MessageDigest({"alg": "sha1", "prov": "cryptojs"});
+    md.updateString(encryptedMessage);
+    this.voteDigest = md.digest();
   }
 }

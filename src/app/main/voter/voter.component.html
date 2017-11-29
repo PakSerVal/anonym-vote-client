@@ -1,19 +1,27 @@
 <div class="container" *ngIf="!castingDone" style="margin-top: 100px;">
   <h2 style="text-align: center">Available elections</h2>
-  <div class="row election-area">
-    <div class="col-xs-4 elections-list">
-      <div *ngFor="let election of electionList" class="election-name">
-        <button class="btn btn-link" (click)="setElection(election)">{{ election.name }}</button>
-      </div>
+  <div class="row">
+    <div class="col-xs-4 elections-list election-name" *ngFor="let election of electionList" (click)="setElection(election)" [ngClass]="selectedElection == election? 'selected-election' : ''">
+      <p>{{ election.name }}</p>
     </div>
-    <div class="col-xs-8 election-component">
+  </div>
+  <div *ngIf="!selectedElection">
+    <h1 style="text-align: center; color: red"><img src="assets/img/up.png">Select election to vote!</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 election-component">
       <app-election [election]="selectedElection" (setCandidate)="onSetCandidate($event)"></app-election>
     </div>
   </div>
-  <app-bulletin [bulletin]="bulletin" [bulletinCanBeSend]="bulletinCanBeSend" (castVote)="onCastVote()"></app-bulletin>
+  <app-bulletin [bulletin]="bulletin" [bulletinCanBeSend]="bulletinCanBeSend" (castVote)="onCastVote($event)"></app-bulletin>
 </div>
 <div *ngIf="castingDone">
-  <h2 style="text-align: center">You have already voted!</h2>
+  <h2 style="text-align: center">Your vote was accepted!</h2>
+  <div *ngIf="voteDigest != ''" style="text-align: center">
+    <h3>Save your vote hash</h3>
+    <p style="color: red; font-size: 30px">{{voteDigest}}</p>
+    <p>You can check your vote on <a href="http://localhost:61189/bulletin-board">bulletin board</a></p>
+  </div>
 </div>
 
 
