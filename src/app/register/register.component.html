@@ -1,3 +1,4 @@
+<p-messages [(value)]="messages"></p-messages>
 <div class="register-area" *ngIf="!isRegistred">
   <label for="username">Username</label>
   <input type="text" class="form-control" id="username" [(ngModel)]="username">
@@ -7,9 +8,6 @@
   <input type="text" class="form-control" id="LIK" [(ngModel)]="LIK"><br>
   <button class="btn btn-success" (click)="register()">Sign Up</button>
   <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
-  <div class="notice">
-    {{noticeMessage}}
-  </div>
 </div>
 <div class="confirm-register-area container" *ngIf="isRegistred">
   <h2 style="text-align: center; color: lawngreen">Registration success!</h2>
@@ -32,5 +30,5 @@
     <div class="col-xs-8 signature-key-date">{{ signatureModulus }}</div>
   </div>
   <h4 style="text-align: center; font-size: 40px; text-decoration: underline;">Save your private key for voting!</h4>
-  <button [routerLink]="['/login']" class="btn btn-link">LogIn</button>
+  <button [routerLink]="['/login']" class="btn btn-link btn-success">LogIn</button>
 </div>

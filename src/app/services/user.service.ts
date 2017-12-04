@@ -38,7 +38,8 @@ export class UserService {
           user.isCastingDone = res.isCastingDone;
           return user;
         }
-      );
+      )
+      .catch(this.handleError);
   }
 
   public addUser(user: User, addUser: User, selectedElections: Election[]) {
@@ -95,18 +96,7 @@ export class UserService {
   }
 
   private handleError(error: any, cought: Observable<any>): any {
-    let message = "";
-
-    if (error instanceof Response) {
-      let errorData = error.json().error || JSON.stringify(error.json());
-      message = `${error.status} - ${error.statusText || ''} ${errorData}`
-    } else {
-      message = error.message ? error.message : error.toString();
-    }
-
-    console.error(message);
-
-    return message;
+    return error;
   }
 }
 

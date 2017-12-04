@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
-
-  constructor(private router: Router, private authService: AuthService) { }
+  messages = [];
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.logOut();
@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
       this.authService.logIn(this.username, this.password);
       this.username = null;
       this.password = null;
+      this.messages.push({severity:'error', summary:'Invalid login or password', detail:'Check your user credentials!'});
     }
   }
 }

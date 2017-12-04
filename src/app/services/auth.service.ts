@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import {UserService} from './user.service';
 import {Router} from '@angular/router';
+import {LoginComponent} from '../login/login.component';
 
 @Injectable()
 export  class AuthService {
@@ -12,9 +12,11 @@ export  class AuthService {
   logIn(username: string, password: string) {
     this.userService.loginUser(username, password).subscribe(
       user => {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        localStorage.setItem('userPassword', password);
-        this.router.navigate(['/main']);
+        if(user) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('userPassword', password);
+          this.router.navigate(['/main']);
+        }
       }
     )
   }

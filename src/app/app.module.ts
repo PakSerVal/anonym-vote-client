@@ -8,6 +8,8 @@ import {InputTextModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RadioButtonModule} from 'primeng/primeng';
+import {MessagesModule} from 'primeng/primeng';
+import {MessageModule} from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -51,6 +53,8 @@ import { AddUserComponent } from './main/admin/add-user/add-user.component';
     DialogModule,
     BrowserAnimationsModule,
     RadioButtonModule,
+    MessageModule,
+    MessagesModule,
     HttpModule
   ],
   providers: [AuthService, AuthGuard, UserService, ElectionService, BulletinService, ElgamalService, CandidateService, UserService, ElectionService],
